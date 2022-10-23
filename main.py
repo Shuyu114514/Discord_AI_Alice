@@ -6,6 +6,7 @@ import json
 
 # Import other files from this project:
 import talking
+import games
 
 # Please create a txt file named Alice_Token and write done the token at the first line
 f = open('Alice_Token.txt', 'r')
@@ -27,6 +28,6 @@ async def on_message(message):
     if message.author == client.user:
         return
     await talking.alice_talking(message)
-
+    await games.random_num(message)
 
 client.run(TOKEN)

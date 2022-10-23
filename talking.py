@@ -10,16 +10,26 @@ alice_dict = {'hello': 'Hello!', 'Hello': 'Hello!',
               'Alice': 'Yes?', 'alice': 'Yes?', '爱丽丝': '怎么啦？'
               }
 random_dict = [[['pat', 'Pat', 'hug', 'Hug'], ['Pat you~', '(´･ω･)ﾉ(._.`)', 'Hug you~']],
-               [['lick', 'Lick', 'prpr'], ['Hentai!', 'Lick~', 'prprpr~']]
+               [['lick', 'Lick', 'prpr'], ['Hentai!', 'Lick~', 'prprpr~']],
+               [['sex', 'Sex'], ['Hentai!', 'no!', 'If you want...My master']]
                ]
+message_send = ''
 
 
 async def alice_talking(message):
     for i in alice_dict:
-        if message.content.startswith(ini_word + i):
+        if message.content == (ini_word + i):  # whole sentence priority
             await message.channel.send(alice_dict[i])
+            return
+        elif message.content.startswith(ini_word + i):
+            await message.channel.send(alice_dict[i])
+            return
 
     for i in random_dict:
         for j in i[0]:
-            if message.content.startswith(ini_word + j):
+            if message.content == (ini_word + j):
                 await message.channel.send(random.choice(i[1]))
+                return
+            elif message.content.startswith(ini_word + j):
+                await message.channel.send(random.choice(i[1]))
+                return
