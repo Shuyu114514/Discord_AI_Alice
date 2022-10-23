@@ -1,9 +1,13 @@
 import numpy as np
 import discord
 import os
+import requests
+import json
+
+# Import other files from this project:
 import talking
 
-# Please create a txt file named Alice_Token and write the token at the first line
+# Please create a txt file named Alice_Token and write done the token at the first line
 f = open('Alice_Token.txt', 'r')
 lines = f.readlines()
 TOKEN = lines[0]
@@ -15,7 +19,7 @@ client = discord.Client(intents=intents)
 
 @client.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
+    print('Your lovely maid Alice({0.user}) is here.'.format(client))
 
 
 @client.event
