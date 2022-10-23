@@ -3,7 +3,8 @@ import discord
 import os
 import talking
 
-#TOKEN = 'MTAzMjg3NTQxOTIxMDM1ODc4NA.GED51S.S7sqhpuWDHbMLMRB84i-jSFGWszKOnMs3HUhrs'
+TOKEN = 'MTAzMjg3NTQxOTIxMDM1ODc4NA.Gh6heV.pvbaztnuyA4R0G0CgHY8hjE_28BCUPi1ONT-10'
+
 intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
@@ -16,7 +17,7 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-    await talking.Alice_talking(message)
+    await talking.alice_talking(message)
 
 
-client.run('MTAzMjg3NTQxOTIxMDM1ODc4NA.GED51S.S7sqhpuWDHbMLMRB84i-jSFGWszKOnMs3HUhrs')
+client.run(TOKEN)

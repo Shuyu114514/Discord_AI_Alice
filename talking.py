@@ -2,12 +2,14 @@ import numpy as np
 import discord
 import os
 
-ini_word = 'A-'
-alice_dict = {'hello': 'Hello!', 'baka': 'You are real baka and ⑨!'}
+ini_word = 'a-'
+alice_dict = {'hello': 'Hello!', 'Hello': 'Hello!',
+              'baka': 'You are real baka and ⑨!', 'Baka': 'You are real baka and ⑨!',
+              'I love you': 'I love you, too.'
+              }
 
-async def Alice_talking(message):
 
-    if message.content.startswith(ini_word+'hello') or message.content.startswith(ini_word+'Hello'):
-        await message.channel.send(alice_dict['hello'])
-    elif message.content.startswith(ini_word+'baka') or message.content.startswith(ini_word+'Baka'):
-        await message.channel.send('You are real baka and ⑨!')
+async def alice_talking(message):
+    for i in alice_dict:
+        if message.content.startswith(ini_word + i):
+            await message.channel.send(alice_dict[i])
