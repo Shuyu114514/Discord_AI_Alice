@@ -4,8 +4,13 @@ import discord
 import os
 import random
 import youtube_dl
-from discord.ext import commands,tasks
+from discord.ext import commands, tasks
 from discord.ext.commands import bot
+
+intents = discord.Intents.default()
+intents.message_content = True
+client = discord.Client(intents=intents)
+bot = commands.Bot(command_prefix='!', intents=intents)
 
 youtube_dl.utils.bug_reports_message = lambda: ''
 
@@ -19,7 +24,7 @@ ytdl_format_options = {
     'quiet': True,
     'no_warnings': True,
     'default_search': 'auto',
-    'source_address': '0.0.0.0' # bind to ipv4 since ipv6 addresses cause issues sometimes
+    'source_address': '0.0.0.0'  # bind to ipv4 since ipv6 addresses cause issues sometimes
 }
 
 ffmpeg_options = {
@@ -27,6 +32,7 @@ ffmpeg_options = {
 }
 
 ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
+
 
 class YTDLSource(discord.PCMVolumeTransformer):
     def __init__(self, source, *, data, volume=0.5):
@@ -54,6 +60,7 @@ async def join(ctx):
     else:
         channel = ctx.message.author.voice.channel
     await channel.connect()
+
 
 @bot.command(name='leave', help='To make the bot leave the voice channel')
 async def leave(ctx):
