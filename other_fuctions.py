@@ -30,7 +30,7 @@ async def leave(ctx):
 
 
 async def action_to_voice_chat(message):
-    if message.content == (ini_word + 'join voice chat'):
+    if message.content == (ini_word + 'join'):
         await join(message)
-    elif message.content == (ini_word + 'leave voice chat'):
+    elif message.content == (ini_word + 'leave'):
         await leave(message)
