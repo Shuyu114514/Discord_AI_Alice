@@ -6,6 +6,7 @@ import json
 from discord.ext import commands, tasks
 
 # Import other files from this project:
+import play_musics
 import switch_Alice
 import talking
 import games
@@ -21,7 +22,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
 bot = commands.Bot(command_prefix='!', intents=intents)
-switch_Alice = False
+switch_Alice = True
 
 @client.event
 async def on_ready():
@@ -46,6 +47,8 @@ async def on_message(message):
         await talking.alice_talking(message)
         await games.random_num(message)
         await other_fuctions.action_to_voice_chat(message)
+        if message.content.startswith('a-play'):
+            await play_musics.play(message)
 
 
 client.run(TOKEN)

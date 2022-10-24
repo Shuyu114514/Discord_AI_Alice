@@ -7,10 +7,14 @@ import youtube_dl
 from discord.ext import commands, tasks
 from discord.ext.commands import bot
 
+f = open('Alice_Token.txt', 'r')
+lines = f.readlines()
+TOKEN = lines[0]
+
 intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
-bot = commands.Bot(command_prefix='!', intents=intents)
+bot = commands.Bot(command_prefix='a-', intents=intents)
 
 youtube_dl.utils.bug_reports_message = lambda: ''
 
@@ -110,3 +114,7 @@ async def stop(ctx):
         await voice_client.stop()
     else:
         await ctx.send("The bot is not playing anything at the moment.")
+
+
+if __name__ == "__main__":
+    bot.run(TOKEN)
